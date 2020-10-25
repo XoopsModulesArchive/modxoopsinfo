@@ -1,0 +1,33 @@
+<?php
+
+global $xoopsDB, $xoopsConfig, $xoopsModule;
+include 'admin_header.php';
+xoops_cp_header();
+OpenTable();
+echo('<b>' . _AM_MODULE_ADMENU1 . '</b> | <a href="php.php" target="_self">' . _AM_MODULE_ADMENU2 . '</a> | <a href="help.php" target="_self">' . _AM_MODULE_ADMENU3 . '</a>');
+CloseTable();
+echo('<h3>' . _AM_MODULE_ADMENU1 . '</h3>');
+OpenTable();
+echo('<br>');
+echo('<b><u>Website URL:</u></b><br>');
+echo XOOPS_URL;
+echo('<br><br><b><u>XOOPS Version:</u></b><br>');
+echo XOOPS_VERSION;
+echo('<br><br><b><u>XOOPS Theme:</u></b><br>');
+echo $xoopsConfig['theme_set'];
+echo('<br><br><b><u>XOOPS Template Set:</u></b><br>');
+echo $xoopsConfig['template_set'];
+echo('<br><br><b><u>PHP Version:</u></b><br>');
+echo phpversion();
+echo('<br><br><b><u>MySQL Version:</u></b><br>');
+    $result = $GLOBALS['xoopsDB']->queryF('SELECT VERSION()');
+    [$mysql_version] = $GLOBALS['xoopsDB']->fetchRow($result);
+    echo $mysql_version;
+    $GLOBALS['xoopsDB']->freeRecordSet($result);
+echo('<br><br><b><u>Server Software:</u></b><br>');
+echo $_SERVER['SERVER_SOFTWARE'];
+echo('<br><br><b><u>User\'s Browser:</u></b><br>');
+echo $_SERVER['HTTP_USER_AGENT'];
+echo('<br><br>');
+CloseTable();
+xoops_cp_footer();
